@@ -4,8 +4,10 @@ description: eval mPlug
 target:
   service: sing
   # name: vision-amd-cluster
-  name: csr-sing-nlk-sc
+  # name: csr-sing-nlk-sc
   # name: amdmi100vc
+  name: vsn-sing-flor-eu
+  vc: vision-sing-florence
 
 
 

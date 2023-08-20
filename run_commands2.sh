@@ -11,9 +11,9 @@ do
   second="_"
   name=${dir//$first/_}
   name=${name//.yaml/""}
+  echo "test"
   echo $name
-  amlt run -y -d exp --no-preemptible $dir $name
-  )
+  echo "test")
 done
 
 dirlist=$(find $1/p -mindepth 1 -maxdepth 1 -type f)
@@ -29,6 +29,5 @@ do
   name=${dir//$first/_}
   name=${name//.yaml/""}
   echo $name
-  amlt run -y -d exp --preemptible $dir $name
   )
 done

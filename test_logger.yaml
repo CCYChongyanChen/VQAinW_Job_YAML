@@ -8,7 +8,9 @@ target:
 
 
   service: sing
-  name: csr-sing-wu2 #csr-sing-nlk-sc
+  name: vsn-sing-flor-eu
+  vc: vision-sing-florence
+  # name: csr-sing-wu2 #csr-sing-nlk-sc
 
 
   # name: vision-amd-cluster

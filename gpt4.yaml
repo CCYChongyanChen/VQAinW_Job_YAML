@@ -4,7 +4,9 @@ description: eval Blip2
 target:
   service: sing
   # name: vision-amd-cluster
-  name: csr-sing-wu2 
+  # name: csr-sing-wu2 
+  name: vsn-sing-flor-eu
+  vc: vision-sing-florence
   # name: amdmi100vc
 
 
