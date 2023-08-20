@@ -1,0 +1,25 @@
+
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: cogsvc-sing-amd-vc01
+  # name: amdmi100vc
+
+
+environment:
+  image: amlt-sing/pytorch-1.11.0-rocm5.1.3
+  # image: mcr.microsoft.com/cbl-mariner/base/python:3
+  # setup: 
+  # - conda create --name py39 python=3.9
+  # - conda activate py39
+  # - nvidia-smi
+
+jobs:
+  - name: testenv
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 1x64G8 # 1xG8-V100-IB@westus2,westus3 
+    command:
+      - sleep 100000000

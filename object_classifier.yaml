@@ -1,0 +1,53 @@
+
+description: object classifier
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  setup:
+  - pip install einops
+  - pip install ftfy
+  - pip install fvcore
+  - pip install gradio
+  - pip install json_tricks
+  - pip install numpy
+  - pip install opencv-python
+  - pip install pandas
+  - pip install pyyaml
+  - pip install regex
+  - pip install scikit-learn
+  - pip install sentencepiece
+  - pip install timm==0.4.12
+  - pip install transformers==4.25.1
+  - pip install yacs
+  - pip install tqdm
+  - pip install spacy
+  - bash
+  - cd /mnt/cache/
+  # - pip install pycocotools
+  # - pip install pycocoevalcap
+# data:
+#   local_dir: 
+code:
+  local_dir: /home/chongyan/visual_attributes
+
+jobs:
+  - name: test_classifier
+    command:
+      # - python object_classifier.py
+      - sleep 1000000

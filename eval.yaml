@@ -1,0 +1,64 @@
+
+description: eval GEM2
+
+target:
+  service: sing
+  name: cogsvc-sing-amd-vc01
+  # name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+environment:
+  image: amlt-sing/pytorch-1.11.0-rocm5.1.3
+  # image: amlt-sing/pytorch-1.11.0
+  # conda_yaml_file: /home/chongyan/amulet/conda_yaml/conda_gem.yaml
+  # image: mcr.microsoft.com/cbl-mariner/base/python:3
+  setup: 
+  - bash  
+  - export PATH=$HOME/.local/bin:$$PATH 
+  - cd /mnt/cache
+  - mkdir evaluate_results
+  - cd GEM-metrics
+  - pip install -r requirements.txt -r requirements-heavy.txt
+  # - python evalBLIP2.py 2 0 0
+  # - python evalBLIP2.py 2 1 0
+  # - python evalBLIP2.py 2 0 1
+  # - python evalBLIP2.py 2 1 1
+  - python evalBLIP2.py 0 0 0
+  # - python evalBLIP2.py 1 0 3
+
+# code: 
+#   local_dir: /home/chongyan/GEM-metrics/
+
+# data: 
+#   local_dir: /home/chongyan/GEM-metrics/
+#   remote_dir: /mnt/default
+  # - conda create --name py39 python=3.9
+  # - conda activate py39
+  # - nvidia-smi
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+    # mount_dir: /mnt/cache
+
+jobs:
+  - name: GEM3
+    # preemptible: True
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    # sku: 16G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    # sku: 32MI100
+    command:
+      - echo "finished"
+      # - python evalBLIP2.py 2 0 0
+      # - python evalBLIP2.py 2 1 0
+      # - python evalBLIP2.py 2 0 1
+      # - python evalBLIP2.py 2 1 1

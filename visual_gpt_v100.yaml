@@ -1,0 +1,61 @@
+
+description: eval visualGPT
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+# code:
+#   local_dir: /home/chongyan/
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  setup: 
+  - bash
+  - cd /mnt/cache/
+  - mkdir TaskMatrix
+  - cd TaskMatrix
+  - cp /mnt/cache/Models/visual_chatgpt_v100.py /mnt/cache/TaskMatrix/visual_chatgpt_v100.py
+  - git clone https://github.com/microsoft/TaskMatrix.git
+  - pip install -r requirements.txt
+  - pip install  git+https://github.com/IDEA-Research/GroundingDINO.git
+  - pip install  git+https://github.com/facebookresearch/segment-anything.git
+  - sudo apt-get update
+  - sudo apt-get install -y libgl1-mesa-glx
+  - export OPENAI_API_KEY=""
+  # - echo $PWD
+  # - export PATH=$HOME/.local/bin:$$PATH 
+  # - cd /mnt/cache/TaskMatrix
+  # - pip install -e .
+  # - python zero_shot_vqa.py 0 0 0
+  # - cd $PWD
+  # - conda create --name py39 python=3.9
+  # - conda activate py39
+  # - nvidia-smi
+
+jobs:
+  - name: visual_gpt_v100
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G2-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+      # - echo "now in job command!"
+      - cd /mnt/cache/TaskMatrix
+      - export OPENAI_API_KEY="" # - pip install -e .
+      # - python zero_shot_vqa.py 2 1 0
+      - python visual_chatgpt_v100.py --load "ImageCaptioning_cuda:0,VisualQuestionAnswering_cuda:1"
+      - sleep 100000000

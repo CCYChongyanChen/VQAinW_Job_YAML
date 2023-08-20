@@ -1,0 +1,75 @@
+
+description: eval Blip2
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+code:
+  local_dir: /home/chongyan/LAVIS/
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  # image: mcr.microsoft.com/cbl-mariner/base/python:3
+  setup: 
+  # - bash
+  - PWD=`pwd`
+  # - echo $PWD
+  # - export PATH=$HOME/.local/bin:$$PATH 
+  - cd /mnt/cache/LAVIS
+  - pip install -e .
+  - echo "fisrt pwd"
+  - echo $PWD
+  - echo "second pwd"
+  - pwd
+  - cd $$CODE_DIR_IN_CONTAINER
+  - echo "print code dir"
+  - pwd
+  - ls
+  # - python zero_shot_vqa.py 0 0 
+  # - cd $PWD
+  # - conda create --name py39 python=3.9
+  # - conda activate py39
+  # - nvidia-smi
+
+jobs:
+  # - name: opt2_6_qm_test2
+  #   sla_tier: premium  # Default: premium, 
+  #   execution_mode: basic  # Default: basic
+  #   priority: high  # Default: medium
+  #   sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+  #   command:
+        # - export CUDA_VISIBLE_DEVICES=0
+  #     - python zero_shot_vqa.py 0 0 
+  #     # - sleep 100000000
+  # - name: flant_qm
+  #   sla_tier: premium  # Default: premium, 
+  #   execution_mode: basic  # Default: basic
+  #   priority: high  # Default: medium
+  #   sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+  #   command:
+  #     - export CUDA_VISIBLE_DEVICES=1
+  #     - python zero_shot_vqa.py 1 0 
+  #     # - sleep 100000000
+  - name: Flantxxl
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G2-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+      - export CUDA_VISIBLE_DEVICES=2
+      - echo "now in job command!"
+      - python zero_shot_vqa.py 2 2

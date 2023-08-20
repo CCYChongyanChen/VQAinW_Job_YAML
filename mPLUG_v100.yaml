@@ -1,0 +1,72 @@
+
+description: eval mPlug
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  setup: 
+  - bash
+  - cd /mnt/cache/
+  - git clone https://github.com/X-PLUG/mPLUG-Owl.git
+  - cp /mnt/cache/Models/owl.py /mnt/cache/mPLUG-Owl/owl.py
+  - cd mPLUG-Owl
+  - pip install torch==1.13.1 torchvision==0.4.2 torchaudio==0.3.1
+  - pip install matplotlib
+  - pip install -r requirements.txt
+  - export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+  # - sed -i ''11c\  ckpt: ''''/mnt/cache/Models/pretrained_minigpt4.pth'''''' /mnt/cache/MiniGPT-4/eval_configs/minigpt4_eval.yaml'
+  # - 'sed -i ''16c\  ckpt: ''''/mnt/cache/converted/'''''' /mnt/cache/MiniGPT-4/minigpt4/configs/models/minigpt4.yaml'
+ # -
+  # - python cli_demo.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --img-path "/mnt/cache/images_jpg_1500/CCQA_00002205" --text-input "what is this"
+  # - rm -rf LLaVA
+  # - git clone https://github.com/Vision-CAIR/MiniGPT-4.git
+  # - cd MiniGPT-4
+  # - pip install --upgrade pip  # enable PEP 660 support
+  # - pip install -e .
+  # - pip uninstall transformers
+  # - pip install shortuuid
+  # - pip install git+https://github.com/huggingface/transformers@cae78c46
+  
+  # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0        --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+
+    # - echo $PWD
+  # - export PATH=$HOME/.local/bin:$$PATH 
+  # - cd /mnt/cache/TaskMatrix
+  # - pip install -e .
+  # - python zero_shot_vqa.py 0 0 0
+  # - cd $PWD
+  # - conda create --name py39 python=3.9
+  # - conda activate py39
+  # - nvidia-smi
+
+jobs:
+  - name: mPlug
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/mPLUG-Owl
+    - python owl.py 
+    # - python owl.py 
+    # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+    # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
+    - sleep 100000
+ 

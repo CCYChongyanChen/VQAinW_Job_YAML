@@ -1,0 +1,49 @@
+
+description: eval GEM
+
+target:
+  service: amlk8s
+  # name: vision-amd-cluster
+  name: a100-80gb-wus3
+  vc: csr-itp-nlm
+  # name: amdmi100vc
+
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  # image: bitnami/pytorch:latest
+  setup: 
+  - bash  
+  - export PATH=$HOME/.local/bin:$$PATH 
+  - cd /mnt/cache
+  - mkdir evaluate_results
+  - cd GEM-metrics
+  - pip install -r requirements.txt -r requirements-heavy.txt
+  - python evalBLIP2.py 2 0 0
+  - python evalBLIP2.py 2 1 0
+  - python evalBLIP2.py 2 0 1
+  - python evalBLIP2.py 2 1 1
+
+jobs:
+  - name: GEM3
+    preemptible: True
+    # sla_tier: Basic  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 64G1-A100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+      - cd /mnt/cache/GEM-metrics
+      # - python evalBLIP2.py 2 0 0
+      # - python evalBLIP2.py 2 1 0
+      # - python evalBLIP2.py 2 0 1
+      # - python evalBLIP2.py 2 1 1

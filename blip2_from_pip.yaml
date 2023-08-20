@@ -1,0 +1,39 @@
+
+description: eval Blip2
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-wu2 
+  # name: amdmi100vc
+
+
+code:
+  local_dir: /home/chongyan/LAVIS/
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  setup: 
+  - bash
+  - pip install salesforce-lavis
+jobs:
+  - name: flantxlqm
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+      - echo "now in job command!"
+      - cd /mnt/cache/blip2
+      # - pip install -e .
+      - python blip2_from_pip.py 1 0 1 #1 -xl, 2-xxl; 0:q+m;

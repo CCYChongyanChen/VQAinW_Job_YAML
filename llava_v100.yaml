@@ -1,0 +1,102 @@
+
+description: eval llava
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+# code:
+#   local_dir: /home/chongyan/
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  setup: 
+  - bash
+  - cd /mnt/cache/
+  # - rm -rf LLaVA
+  - git clone https://github.com/haotian-liu/LLaVA.git
+  - cd LLaVA
+  - cd llava/eval/
+  - rm model_vqa.py
+  - cp /mnt/cache/llava_code_/model_vqa.py model_vqa.py
+  - cd /mnt/cache/LLaVA
+  - pip install --upgrade pip  # enable PEP 660 support
+  - pip install -e .
+  - pip uninstall transformers
+  - pip install shortuuid
+  - pip install git+https://github.com/huggingface/transformers@cae78c46
+
+  # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0        --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+
+    # - echo $PWD
+  # - export PATH=$HOME/.local/bin:$$PATH 
+  # - cd /mnt/cache/TaskMatrix
+  # - pip install -e .
+  # - python zero_shot_vqa.py 0 0 0
+  # - cd $PWD
+  # - conda create --name py39 python=3.9
+  # - conda activate py39
+  # - nvidia-smi
+
+jobs:
+  - name: llava_v100_0
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/LLaVA
+    # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+    - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_VQAinW.jsonl    --image-folder  /mnt/cache/images_png_converted  --answers-file /mnt/cache/ModelPrediction/llava_prediction_VQAinW.jsonl  #--num-chunks 20 --chunk-idx 1
+ 
+  # - name: llava_v100_1
+  #   sla_tier: premium  # Default: premium, 
+  #   execution_mode: basic  # Default: basic
+  #   priority: high  # Default: medium
+  #   sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+  #   command:
+  #   - cd /mnt/cache/LLaVA
+  #     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+  #   - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_unpredicted.jsonl    --image-folder  /mnt/cache/images_jpg_1500  --answers-file /mnt/cache/ModelPrediction/llava_prediction9.jsonl  --num-chunks 4 --chunk-idx 1
+     
+  # - name: llava_v100_2
+  #   sla_tier: premium  # Default: premium, 
+  #   execution_mode: basic  # Default: basic
+  #   priority: high  # Default: medium
+  #   sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+  #   command:
+  #   - cd /mnt/cache/LLaVA
+  #     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+  #   - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_unpredicted.jsonl    --image-folder  /mnt/cache/images_jpg_1500  --answers-file /mnt/cache/ModelPrediction/llava_prediction10.jsonl  --num-chunks 4 --chunk-idx 2
+  
+  # - name: llava_v100_3
+  #   sla_tier: premium  # Default: premium, 
+  #   execution_mode: basic  # Default: basic
+  #   priority: high  # Default: medium
+  #   sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+  #   command:
+  #   - cd /mnt/cache/LLaVA
+  #     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+  #   - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_unpredicted.jsonl    --image-folder  /mnt/cache/images_jpg_1500  --answers-file /mnt/cache/ModelPrediction/llava_prediction11.jsonl  --num-chunks 4 --chunk-idx 3
+    
+    
+    
+      # - echo "now in job command!"
+      # - cd /mnt/cache/TaskMatrix
+      
+      # - python zero_shot_vqa.py 2 1 0
+      # - python visual_chatgpt.py --load "ImageCaptioning_cuda:0,VisualQuestionAnswering_cuda:2"
+      # - sleep 100000000

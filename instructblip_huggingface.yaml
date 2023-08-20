@@ -1,0 +1,46 @@
+
+description: eval instructBlip
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+# code:
+#   local_dir: /home/chongyan/
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  # pytorch-1.11.0
+  setup: 
+  - bash
+  - cd /mnt/cache/
+  - pip install torch==2.0.1
+  - pip install torchtext
+  - pip install torchvision==0.15.2
+  - pip install git+https://github.com/huggingface/transformers
+  - pip install protobuf==3.20.0
+
+
+jobs:
+  - name: instructBLIPHuggingFace
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G2-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+      - cd /mnt/cache/Models/
+      - python instructBlip2.py
+

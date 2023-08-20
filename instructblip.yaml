@@ -1,0 +1,69 @@
+
+description: eval instructBlip
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+# code:
+#   local_dir: /home/chongyan/
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  # pytorch-1.11.0
+  setup: 
+  - bash
+  - cd /mnt/cache/
+  - pip install torch==2.0.1
+  - pip install torchtext
+  - pip install torchvision==0.15.2
+  - pip install accelerate
+  
+  # - mkdir LAVIS2
+  
+  - cd LAVIS2
+  # - pip install salesforce-lavis
+  - git clone https://github.com/salesforce/LAVIS.git
+  - cd LAVIS
+  # - cd llava/eval/
+  # - rm model_vqa.py
+  # - cp /mnt/cache/llava_code_/model_vqa.py model_vqa.py
+  # - cd /mnt/cache/LLaVA
+  # - pip install --upgrade pip  # enable PEP 660 support
+  - pip install -e .
+  - pip install protobuf==3.20.0
+  # - pip uninstall markdown-it-py
+  # - pip install markdown-it-py==1.0
+  
+  - cp /mnt/cache/Models/blip2_instruct_vicuna13b.yaml /mnt/cache/LAVIS2/LAVIS/lavis/configs/models/blip2/blip2_instruct_vicuna13b.yaml
+
+  # - cp /mnt/cache/Models/blip2_instruct_vicuna13b.yaml /mnt/cache/LAVIS_NEW/LAVIS/lavis/configs/models/blip2/blip2_instruct_vicuna13b.yaml
+  # - pip install shortuuid
+  # - pip install git+https://github.com/huggingface/transformers@cae78c46
+
+
+
+jobs:
+  - name: instructBLIP
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G2-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+      - cd /mnt/cache/Models/
+      - python instructBlip.py
+      - sleep 10000000000
+

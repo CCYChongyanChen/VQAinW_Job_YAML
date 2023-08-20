@@ -1,0 +1,40 @@
+
+description: qafact
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  name: csr-sing-nlk-sc
+  # name: amdmi100vc
+
+
+storage:
+  my_output:
+    storage_account_name: cqa
+    container_name: logger
+    mount_dir: /mnt/myoutput
+    is_output: True
+  cache:
+    storage_account_name: cqa
+    container_name: ccqa
+
+environment:
+  image: amlt-sing/pytorch-1.8.0-cuda11.1-cudnn8-devel
+  setup: 
+  - bash
+  - cd /mnt/cache/
+  - git clone https://github.com/maszhongming/UniEval.git
+  - cd UniEval
+  - pip install -r requirements.txt
+  - cp /mnt/cache/Models/eval_unieval.py /mnt/cache/UniEval/eval_unieval.py
+  
+
+jobs:
+  - name: qafact0
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/UniEval/
+    - python eval_unieval.py
