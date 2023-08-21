@@ -40,16 +40,18 @@ environment:
   # - conda activate py39
   # - nvidia-smi
 
+
 storage:
-  my_output:
-    storage_account_name: cqa
-    container_name: logger
-    mount_dir: /mnt/myoutput
-    is_output: True
+  # my_output:
+  #   storage_account_name: internexp
+  #   container_name: logger
+  #   mount_dir: /mnt/myoutput
+  #   is_output: True
   cache:
-    storage_account_name: cqa
-    container_name: ccqa
-    # mount_dir: /mnt/cache
+    storage_account_name: internexp
+    container_name: chongyan
+    mount_dir: /mnt/cache
+
 
 jobs:
   - name: GEM3
