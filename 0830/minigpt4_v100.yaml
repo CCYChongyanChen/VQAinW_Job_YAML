@@ -1,0 +1,147 @@
+
+description: eval minigpt4
+
+target:
+  service: sing
+  # name: vision-amd-cluster
+  # name:  csr-sing-wu2 #csr-sing-nlk-sc
+  # name: amdmi100vc
+  name: vsn-sing-flor-eu
+  vc: vision-sing-florence
+
+code:
+  local_dir: /home/chongyan/MODELS/MiniGPT-4
+
+
+storage:
+  # my_output:
+  #   storage_account_name: internexp
+  #   container_name: logger
+  #   mount_dir: /mnt/myoutput
+  #   is_output: True
+  cache:
+    storage_account_name: internexp
+    container_name: chongyan
+    mount_dir: /mnt/cache
+
+environment:
+  image: amlt-sing/pytorch-1.11.0
+  setup: 
+  - bash
+  - conda init bash
+  - source ~/.bashrc
+  - cd /mnt/cache/MiniGPT-4
+  # - git clone https://github.com/Vision-CAIR/MiniGPT-4.git
+  # - cd MiniGPT-4
+  - pip install accelerate==0.16.0
+  - pip install aiohttp==3.8.4
+  - pip install aiosignal==1.3.1
+  - pip install async-timeout==4.0.2
+  - pip install attrs==22.2.0
+  - pip install bitsandbytes==0.37.0
+  - pip install cchardet==2.1.7
+  - pip install chardet==5.1.0
+  - pip install contourpy==1.0.7
+  - pip install cycler==0.11.0
+  - pip install filelock==3.9.0
+  - pip install fonttools==4.38.0
+  - pip install frozenlist==1.3.3
+  - pip install huggingface-hub==0.13.4
+  - pip install importlib-resources==5.12.0
+  - pip install kiwisolver==1.4.4
+  - pip install matplotlib==3.7.0
+  - pip install multidict==6.0.4
+  - pip install openai==0.27.0
+  - pip install packaging==23.0
+  - pip install psutil==5.9.4
+  - pip install pycocotools==2.0.6
+  - pip install pyparsing==3.0.9
+  - pip install python-dateutil==2.8.2
+  - pip install pyyaml==6.0
+  - pip install regex==2022.10.31
+  - pip install tokenizers==0.13.2
+  - pip install tqdm==4.64.1
+  - pip install transformers==4.28.0
+  - pip install timm==0.6.13
+  - pip install spacy==3.5.1
+  - pip install webdataset==0.2.48
+  - pip install scikit-learn==1.2.2
+  - pip install scipy==1.10.1
+  - pip install yarl==1.8.2
+  - pip install zipp==3.14.0
+  - pip install omegaconf==2.3.0
+  - pip install opencv-python==4.7.0.72
+  - pip install iopath==0.1.10
+  - pip install decord==0.6.0
+  - pip install tenacity==8.2.2
+  - pip install peft
+  - pip install pycocoevalcap
+  - pip install sentence-transformers
+  - pip install umap-learn
+  - pip install notebook
+  - pip install gradio==3.24.1
+  - pip install gradio-client==0.0.8
+  - pip install wandb
+  - pip install torchaudio=0.12.1
+  - pip install torchvision=0.13.1
+  - sudo apt-get update
+  - sudo apt-get install -y libgl1-mesa-glx
+  - pip install -U bitsandbytes
+  # - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 1
+
+  # - sed -i ''11c\  ckpt: ''''/mnt/cache/Models/pretrained_minigpt4.pth'''''' /mnt/cache/MiniGPT-4/eval_configs/minigpt4_eval.yaml'
+  # - 'sed -i ''16c\  ckpt: ''''/mnt/cache/converted/'''''' /mnt/cache/MiniGPT-4/minigpt4/configs/models/minigpt4.yaml'
+ # -
+  # - python cli_demo.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --img-path "/mnt/cache/images_jpg_1500/CCQA_00002205" --text-input "what is this"
+  # - rm -rf LLaVA
+  # - git clone https://github.com/Vision-CAIR/MiniGPT-4.git
+  # - cd MiniGPT-4
+  # - pip install --upgrade pip  # enable PEP 660 support
+  # - pip install -e .
+  # - pip uninstall transformers
+  # - pip install shortuuid
+  # - pip install git+https://github.com/huggingface/transformers@cae78c46
+  
+  # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0        --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+
+    # - echo $PWD
+  # - export PATH=$HOME/.local/bin:$$PATH 
+  # - cd /mnt/cache/TaskMatrix
+  # - pip install -e .
+  # - python zero_shot_vqa.py 0 0 0
+  # - cd $PWD
+  # - conda create --name py39 python=3.9
+  # - conda activate py39
+  # - nvidia-smi
+
+jobs:
+  - name: minigpt4
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G2-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/MiniGPT-4
+    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 > /mnt/cache/logs/minigpt4.log 2>&1
+
+    # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
+    # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
+
+
+    submit_args:
+      max_run_duration_seconds: 1080000
+      # env:
+      #   NCCL_IB_DISABLE: 0 # 
+      #   NNCL_DEBUG: VERSION # 
+      #   NCCL_IB_TIMEOUT: 22 # suggested by Hua
+      #   MKL_THREADING_LAYER: GNU
+      env:
+        # AMLT_NO_TENSORBOARD_PATCHING: 1
+        NCCL_IB_DISABLE: 0
+        NCCL_IBEXT_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 22
+        MKL_THREADING_LAYER: GNU
+        ENABLE_HOME_MOUNT: False
+        MIOPEN_FIND_MODE: 1
+        DATASET_FUSE_CACHE_TIMEOUT: 0
