@@ -32,51 +32,169 @@ environment:
   - export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
   - cd /mnt/cache/mPLUG-Owl
   - pip install -r requirements.txt
-  # - sed -i ''11c\  ckpt: ''''/mnt/cache/Models/pretrained_minigpt4.pth'''''' /mnt/cache/MiniGPT-4/eval_configs/minigpt4_eval.yaml'
-  # - 'sed -i ''16c\  ckpt: ''''/mnt/cache/converted/'''''' /mnt/cache/MiniGPT-4/minigpt4/configs/models/minigpt4.yaml'
- # -
-  # - python cli_demo.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --img-path "/mnt/cache/images_jpg_1500/CCQA_00002205" --text-input "what is this"
-  # - rm -rf LLaVA
-  # - git clone https://github.com/Vision-CAIR/MiniGPT-4.git
-  # - cd MiniGPT-4
-  # - pip install --upgrade pip  # enable PEP 660 support
-  # - pip install -e .
-  # - pip uninstall transformers
-  # - pip install shortuuid
-  # - pip install git+https://github.com/huggingface/transformers@cae78c46
-  
-  # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0        --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
 
-    # - echo $PWD
-  # - export PATH=$HOME/.local/bin:$$PATH 
-  # - cd /mnt/cache/TaskMatrix
-  # - pip install -e .
-  # - python zero_shot_vqa.py 0 0 0
-  # - cd $PWD
-  # - conda create --name py39 python=3.9
-  # - conda activate py39
-  # - nvidia-smi
 
 jobs:
-  - name: mPlug
+  - name: mPlug1
     sla_tier: premium  # Default: premium, 
     execution_mode: basic  # Default: basic
     priority: high  # Default: medium
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl.py 
+    - python owl.py 1
     - sleep 100000
  
     submit_args:
       max_run_duration_seconds: 1080000
-      # env:
-      #   NCCL_IB_DISABLE: 0 # 
-      #   NNCL_DEBUG: VERSION # 
-      #   NCCL_IB_TIMEOUT: 22 # suggested by Hua
-      #   MKL_THREADING_LAYER: GNU
       env:
-        # AMLT_NO_TENSORBOARD_PATCHING: 1
+        NCCL_IB_DISABLE: 0
+        NCCL_IBEXT_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 22
+        MKL_THREADING_LAYER: GNU
+        ENABLE_HOME_MOUNT: False
+        MIOPEN_FIND_MODE: 1
+        DATASET_FUSE_CACHE_TIMEOUT: 0
+  - name: mPlug2
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/mPLUG-Owl
+    - python owl.py 2
+    - sleep 100000
+ 
+    submit_args:
+      max_run_duration_seconds: 1080000
+      env:
+        NCCL_IB_DISABLE: 0
+        NCCL_IBEXT_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 22
+        MKL_THREADING_LAYER: GNU
+        ENABLE_HOME_MOUNT: False
+        MIOPEN_FIND_MODE: 1
+        DATASET_FUSE_CACHE_TIMEOUT: 0
+  - name: mPlug3
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/mPLUG-Owl
+    - python owl.py 3
+    - sleep 100000
+ 
+    submit_args:
+      max_run_duration_seconds: 1080000
+      env:
+        NCCL_IB_DISABLE: 0
+        NCCL_IBEXT_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 22
+        MKL_THREADING_LAYER: GNU
+        ENABLE_HOME_MOUNT: False
+        MIOPEN_FIND_MODE: 1
+        DATASET_FUSE_CACHE_TIMEOUT: 0
+  - name: mPlug4
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/mPLUG-Owl
+    - python owl.py 4
+    - sleep 100000
+ 
+    submit_args:
+      max_run_duration_seconds: 1080000
+      env:
+        NCCL_IB_DISABLE: 0
+        NCCL_IBEXT_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 22
+        MKL_THREADING_LAYER: GNU
+        ENABLE_HOME_MOUNT: False
+        MIOPEN_FIND_MODE: 1
+        DATASET_FUSE_CACHE_TIMEOUT: 0
+  - name: mPlug5
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/mPLUG-Owl
+    - python owl.py 5
+    - sleep 100000
+ 
+    submit_args:
+      max_run_duration_seconds: 1080000
+      env:
+        NCCL_IB_DISABLE: 0
+        NCCL_IBEXT_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 22
+        MKL_THREADING_LAYER: GNU
+        ENABLE_HOME_MOUNT: False
+        MIOPEN_FIND_MODE: 1
+        DATASET_FUSE_CACHE_TIMEOUT: 0
+  - name: mPlug6
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/mPLUG-Owl
+    - python owl.py 6
+    - sleep 100000
+ 
+    submit_args:
+      max_run_duration_seconds: 1080000
+      env:
+        NCCL_IB_DISABLE: 0
+        NCCL_IBEXT_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 22
+        MKL_THREADING_LAYER: GNU
+        ENABLE_HOME_MOUNT: False
+        MIOPEN_FIND_MODE: 1
+        DATASET_FUSE_CACHE_TIMEOUT: 0
+  - name: mPlug7
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/mPLUG-Owl
+    - python owl.py 7
+    - sleep 100000
+ 
+    submit_args:
+      max_run_duration_seconds: 1080000
+      env:
+        NCCL_IB_DISABLE: 0
+        NCCL_IBEXT_DISABLE: 0
+        NCCL_DEBUG: INFO
+        NCCL_IB_TIMEOUT: 22
+        MKL_THREADING_LAYER: GNU
+        ENABLE_HOME_MOUNT: False
+        MIOPEN_FIND_MODE: 1
+        DATASET_FUSE_CACHE_TIMEOUT: 0
+  - name: mPlug8
+    sla_tier: premium  # Default: premium, 
+    execution_mode: basic  # Default: basic
+    priority: high  # Default: medium
+    sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
+    command:
+    - cd /mnt/cache/mPLUG-Owl
+    - python owl.py 8
+    - sleep 100000
+ 
+    submit_args:
+      max_run_duration_seconds: 1080000
+      env:
         NCCL_IB_DISABLE: 0
         NCCL_IBEXT_DISABLE: 0
         NCCL_DEBUG: INFO
