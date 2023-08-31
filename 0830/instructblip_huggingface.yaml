@@ -42,7 +42,7 @@ jobs:
     sla_tier: premium  # Default: premium, 
     execution_mode: basic  # Default: basic
     priority: high  # Default: medium
-    sku: 32G2-V100 # 1xG8-V100-IB@westus2,westus3 
+    sku: 32G8-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
       - cd /mnt/cache/Models/
       - python instructBlip2.py

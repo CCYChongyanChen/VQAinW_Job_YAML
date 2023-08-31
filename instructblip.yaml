@@ -5,9 +5,8 @@ target:
   service: sing
   # name: vision-amd-cluster
   # name: csr-sing-nlk-sc
-  
-  name: vsn-sing-flor-eu
-  vc: vision-sing-florence
+  name: vsn-sing-flor-eu
+  vc: vision-sing-florence
   # name: amdmi100vc
 
 

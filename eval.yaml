@@ -3,8 +3,8 @@ description: eval GEM2
 
 target:
   service: sing
-  name: vsn-sing-flor-eu
-  vc: vision-sing-florence
+  name: vsn-sing-flor-eu
+  vc: vision-sing-florence
   # name: cogsvc-sing-amd-vc01
   
   # name: csr-sing-nlk-sc

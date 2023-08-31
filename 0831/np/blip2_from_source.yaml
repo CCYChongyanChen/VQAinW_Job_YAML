@@ -6,8 +6,8 @@ target:
   # name: a100-80gb-wus3
   # vc: csr-itp-nlm
   service: sing
-  name: vsn-sing-flor-eu
-  vc: vision-sing-florence
+  name: vsn-sing-flor-eu
+  vc: vision-sing-florence
 
   # name: csr-sing-wu2 #csr-sing-nlk-sc
 
