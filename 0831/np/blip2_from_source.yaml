@@ -16,11 +16,6 @@ target:
   # name: amdmi100vc
 
 storage:
-  my_output:
-    # storage_account_name: cqa
-    # container_name: logger
-    # mount_dir: /mnt/myoutput
-    # is_output: True
   cache:
     storage_account_name: internexp
     container_name: chongyan
