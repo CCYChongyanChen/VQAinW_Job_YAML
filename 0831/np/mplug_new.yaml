@@ -18,7 +18,7 @@ storage:
     mount_dir: /mnt/cache
 
 environment:
-  image: amlt-sing/acpt-pytorch-1.13.0-cuda11.7
+  image: acpt-pytorch-1.13.0-cuda11.7
   setup: 
   - bash
   - cd /mnt/cache/
