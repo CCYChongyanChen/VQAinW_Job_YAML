@@ -50,7 +50,7 @@ jobs:
     command:
       - echo "now in job command!"
       - cd /mnt/cache/blip2
-      - python blip2_VQAinW.py 1 0 1 1> /mnt/cache/logs/BLIP2.log 2>&1 
+      - python blip2_VQAinW.py 1 0 1 1 > /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
       max_run_duration_seconds: 1080000
