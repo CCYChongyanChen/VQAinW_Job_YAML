@@ -77,8 +77,8 @@ environment:
   - pip install gradio==3.24.1
   - pip install gradio-client==0.0.8
   - pip install wandb
-  - pip install torchaudio==0.12.1
-  - pip install torchvision==0.13.1
+  # - pip install torchaudio==0.12.1
+  # - pip install torchvision==0.13.1
   - sudo apt-get update
   - sudo apt-get install -y libgl1-mesa-glx
   - pip install -U bitsandbytes
@@ -145,7 +145,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/MiniGPT-4
-    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 2 > /mnt/cache/logs/minigpt4.log 2>&1
+    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 2  
 
     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
     # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
@@ -173,7 +173,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/MiniGPT-4
-    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 3 > /mnt/cache/logs/minigpt4.log 2>&1
+    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 3 
 
     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
     # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
@@ -201,7 +201,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/MiniGPT-4
-    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 4 > /mnt/cache/logs/minigpt4.log 2>&1
+    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 4  
 
     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
     # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
@@ -229,7 +229,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/MiniGPT-4
-    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 5 > /mnt/cache/logs/minigpt4.log 2>&1
+    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 5  
 
     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
     # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
@@ -257,7 +257,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/MiniGPT-4
-    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 6 > /mnt/cache/logs/minigpt4.log 2>&1
+    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 6 
 
     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
     # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
@@ -285,7 +285,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/MiniGPT-4
-    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 7 > /mnt/cache/logs/minigpt4.log 2>&1
+    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 7 
 
     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
     # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
@@ -313,7 +313,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/MiniGPT-4
-    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 8 > /mnt/cache/logs/minigpt4.log 2>&1
+    - python cli_demo_VQAinW.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --split 8  
 
     # - python -m llava.eval.run_llava       --model-name /mnt/cache/LLaVA-13B-v0       --image-file "https://llava-vl.github.io/static/images/view.jpg" --query "What are the things I should be cautious about when I visit here?"
     # - python -m llava.eval.model_vqa --model-name /mnt/cache/LLaVA-13B-v0 --question-file /mnt/cache/FinalInput/llava_input_merged.jsonl    --image-folder  /mnt/cache/images_jpg_1500_merge_ori_index  --answers-file /mnt/cache/ModelPrediction/llava_prediction_merged_small.jsonl  --num-chunks 20 --chunk-idx 1
