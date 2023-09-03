@@ -49,7 +49,7 @@ jobs:
     sku: 32G1-V100
     command:
       - echo "now in job command!"
-      - cd /mnt/cache/blip2
+      - cd /mnt/cache/Models/
       - python blip2_VQAinW.py 1 0 1 1 > /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
@@ -73,7 +73,7 @@ jobs:
     sku: 32G1-V100
     command:
       - echo "now in job command!"
-      - cd /mnt/cache/blip2
+      - cd /mnt/cache/Models/
       - python blip2_VQAinW.py 1 0 1 2> /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
@@ -97,7 +97,7 @@ jobs:
     sku: 32G1-V100
     command:
       - echo "now in job command!"
-      - cd /mnt/cache/blip2
+      - cd /mnt/cache/Models/
       - python blip2_VQAinW.py 1 0 1 3> /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
@@ -121,7 +121,7 @@ jobs:
     sku: 32G1-V100
     command:
       - echo "now in job command!"
-      - cd /mnt/cache/blip2
+      - cd /mnt/cache/Models/
       - python blip2_VQAinW.py 1 0 1 4> /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
@@ -145,7 +145,7 @@ jobs:
     sku: 32G1-V100
     command:
       - echo "now in job command!"
-      - cd /mnt/cache/blip2
+      - cd /mnt/cache/Models/
       - python blip2_VQAinW.py 1 0 1 5 > /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
@@ -169,7 +169,7 @@ jobs:
     sku: 32G1-V100
     command:
       - echo "now in job command!"
-      - cd /mnt/cache/blip2
+      - cd /mnt/cache/Models/
       - python blip2_VQAinW.py 1 0 1 6 > /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
@@ -193,7 +193,7 @@ jobs:
     sku: 32G1-V100
     command:
       - echo "now in job command!"
-      - cd /mnt/cache/blip2
+      - cd /mnt/cache/Models/
       - python blip2_VQAinW.py 1 0 1 7 > /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
@@ -217,7 +217,7 @@ jobs:
     sku: 32G1-V100
     command:
       - echo "now in job command!"
-      - cd /mnt/cache/blip2
+      - cd /mnt/cache/Models/
       - python blip2_VQAinW.py 1 0 1 8 > /mnt/cache/logs/BLIP2.log 2>&1 
 
     submit_args:  
