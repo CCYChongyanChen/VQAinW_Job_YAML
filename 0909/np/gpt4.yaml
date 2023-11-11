@@ -18,6 +18,7 @@ environment:
   - bash
   - cd /mnt/cache/Models/gpt4
   - pip install -r requirements.txt
+  - export OPENAI_API_KEY=""
   
 jobs:
   - name: gpt4
