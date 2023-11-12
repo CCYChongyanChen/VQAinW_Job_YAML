@@ -42,7 +42,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_QI_degbugging.py 1 > /mnt/cache/logs/mplug_QI_debugging.log 2>&1 
+    - python owl_QI_debugging.py 1 > /mnt/cache/logs/mplug_QI_debugging.log 2>&1 
  
     submit_args:
       max_run_duration_seconds: 1080000
