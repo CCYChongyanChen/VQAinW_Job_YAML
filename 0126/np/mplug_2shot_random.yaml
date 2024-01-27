@@ -12,6 +12,10 @@ target:
 
 
 storage:
+  wu2:
+    storage_account_name: mengchenwu2
+    container_name: cache/test
+    mount_dir: /mnt/wu2
   cache:
     storage_account_name: internexp
     container_name: chongyan
@@ -42,7 +46,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 1 1 0> /mnt/cache/logs/mplug_fewshot.log 2>&1 
+    - python owl_fewshot.py 1 2 0> /mnt/cache/logs/mplug_fewshot.log 2>&1 
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -62,7 +66,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 2 1 0
+    - python owl_fewshot.py 2 2 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -82,7 +86,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 3 1 0
+    - python owl_fewshot.py 3 2 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -102,7 +106,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 4 1 0
+    - python owl_fewshot.py 4 2 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -122,7 +126,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 5 1 0
+    - python owl_fewshot.py 5 2 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -142,7 +146,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 6 1 0
+    - python owl_fewshot.py 6 2 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -162,7 +166,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 7 1 0
+    - python owl_fewshot.py 7 2 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -182,7 +186,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 8 1 0
+    - python owl_fewshot.py 8 2 0
  
     submit_args:
       max_run_duration_seconds: 1080000
