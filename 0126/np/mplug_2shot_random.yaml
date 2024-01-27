@@ -14,7 +14,7 @@ target:
 storage:
   wu2:
     storage_account_name: mengchenwu2
-    container_name: cache/test
+    container_name: cache
     mount_dir: /mnt/wu2
   cache:
     storage_account_name: internexp
