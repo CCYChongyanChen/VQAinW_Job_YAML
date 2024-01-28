@@ -46,8 +46,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 2 1 1> /mnt/cache/logs/mplug_fewshot.log 2>&1 
- 
+    - python owl_fewshot.py 2 1 1 
     submit_args:
       max_run_duration_seconds: 1080000
       env:
