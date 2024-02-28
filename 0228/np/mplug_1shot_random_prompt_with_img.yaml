@@ -21,7 +21,6 @@ storage:
     container_name: chongyan
     mount_dir: /mnt/cache
 
-    
 environment:
   image: amlt-sing/acpt-pytorch-1.13.0-cuda11.7
   setup: 
@@ -29,7 +28,7 @@ environment:
   - cd /mnt/cache/
   # - rm -r mPLUG-Owl
   # - git clone https://github.com/X-PLUG/mPLUG-Owl.git
-  # - cp /mnt/cache/Models/owl_fewshot.py /mnt/cache/mPLUG-Owl/owl_fewshot.py
+  # - cp /mnt/cache/Models/owl_fewshot_prompt_with_img.py /mnt/cache/mPLUG-Owl/owl_fewshot_prompt_with_img.py
   - cd mPLUG-Owl
   - pip install torch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1
   - pip install -r requirements.txt
@@ -47,7 +46,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 1 1 1 
+    - python owl_fewshot_prompt_with_img.py 1 1 0 
     submit_args:
       max_run_duration_seconds: 1080000
       env:
@@ -66,7 +65,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 2 1 1
+    - python owl_fewshot_prompt_with_img.py 2 1 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -86,7 +85,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 3 1 1
+    - python owl_fewshot_prompt_with_img.py 3 1 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -106,7 +105,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 4 1 1
+    - python owl_fewshot_prompt_with_img.py 4 1 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -126,7 +125,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 5 1 1
+    - python owl_fewshot_prompt_with_img.py 5 1 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -146,7 +145,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 6 1 1
+    - python owl_fewshot_prompt_with_img.py 6 1 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -166,7 +165,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 7 1 1
+    - python owl_fewshot_prompt_with_img.py 7 1 0
  
     submit_args:
       max_run_duration_seconds: 1080000
@@ -186,7 +185,7 @@ jobs:
     sku: 32G1-V100 # 1xG8-V100-IB@westus2,westus3 
     command:
     - cd /mnt/cache/mPLUG-Owl
-    - python owl_fewshot.py 8 1 1
+    - python owl_fewshot_prompt_with_img.py 8 1 0
  
     submit_args:
       max_run_duration_seconds: 1080000
